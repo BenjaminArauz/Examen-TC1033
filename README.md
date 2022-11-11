@@ -8,4 +8,5 @@ Este programa esta principalmente pensado para empresas de baloncesto, sin embar
 
 1. Agregar jugadores a la plantilla.
 2. Seleccionar que acción se desea realizar 
+
 2.1 Mientras la acción no desea salir, se puede manipular la información de los jugadores.
