@@ -7,7 +7,7 @@ class AtrasCancha{
         string coliseo, tipo_balon, tipo_aro;
         int personas_limpieza;
     public:
-        AtrasCancha();
+        AtrasCancha(){}
         //Métodos
         string getColiseo();
         string getTipoBalon();
