@@ -6,7 +6,13 @@ Este programa esta principalmente pensado para empresas de baloncesto, sin embar
 
 ## Código
 
-1. Agregar jugadores a la plantilla.
-2. Seleccionar que acción se desea realizar 
+1. Crear jugador
+2. Agregar jugadores a la plantilla.
+3. Agregar equipo a partido
+4. Seleccionar que acción se desea realizar 
 
-2.1 Mientras la acción no desea salir, se puede manipular la información de los jugadores.
+4.1 Mientras la acción no desea salir, se puede manipular la información de los jugadores.
+
+## Cambios
+
+Los principales cambios que hice, fue implementar bien las clases que tengo, es decir, ahora ya tengo una clase Equipo que tiene objetos de tipo Jugador, lo corregí en la clase Equipo, desde la linea 31-34 y en la clase Partidos, en la línea 27
