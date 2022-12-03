@@ -1,13 +1,29 @@
+/*
+- Benjamín Iván Arauz Córdova
+- A00836936
+- 02/12/2022
+
+Descripción: Este programa esta principalmente pensado para empresas de baloncesto, 
+sin embargo, el uso de este programa, puede ser para cualquier empresa que requiera 
+manejar datos. La principal acción de este programa es una base de datos la cual se 
+puede manipular facilmente por el usuario, este programa contiene una lista de equipos 
+y estos equipos a su vez tiene una lista de jugadores, entre los datos más generales 
+para el jugador son: consulta del jugador, jugador con mas minutos en la cancha, agregar 
+a un jugador, etc, por otro lado, podemos crear un nuevo equipo y de la misma manera 
+manejarlo. 
+*/
+
+//Bibliotecas
 #include <iostream>
 #include <string>
 using namespace std;
-#include "Equipo.h"
-#include "Jugador.h"
-#include "Partidos.h"
-#include "Armador.h"
-#include "Alero.h"
-#include "Poste.h"
 
+//Clases creadas
+#include "Equipo.h" //Clase de equipo
+#include "Jugador.h" // Clase de un jugador
+#include "Partidos.h" // Clase de un partido
+
+//Función para imprimir el menú
 void menu_administrar() {
     cout << "1. Consultar \n";
     cout << "2. Mayor encestador \n";
@@ -19,77 +35,60 @@ void menu_administrar() {
     cout << "8. Eliminar jugadores \n";
     cout << "0. Salir \n";
 }
-void posicionJugador(){
-    int opcion_posicion;
-    int robos_hechos;
-    int buenas_jugadas;
-    int rebotes;
-    cout << "¿ Qué tipo de jugador es? ";
-    cout << "1. Armador";
-    cout << "2. Alero";
-    cout << "3. Poste";
-    cin >> opcion_posicion;
-    if (opcion_posicion == 1) {
-        cout << "Robos hechos: ";
-        cin >> robos_hechos;
-        Armador armador(robos_hechos);
-    } else if (opcion_posicion == 2) {
-        cout << "Buenas jugadas: ";
-        cin >> buenas_jugadas;
-        Alero alero(buenas_jugadas);
-    } else {
-        cout << "Rebotes hechos: ";
-        cin >> rebotes;
-        Poste poste(rebotes);
-    }
-}
+
 int main() {
+    //Variables
     string nombre_buscar, equipo_buscar, nuevo_nombre_equipo;
-    int opcion1, opcion2, tam, opcion;
-    EquipoNuevo equipo;
-    JugadorNuevo jugador;
-    Partidos partido;
+    int opcion1, opcion2, tam, opcion, tipo_equipo;
+    Equipo equipo;
+    Jugador jugador;
+    Partidos partido; 
     cout << "Selecciona tu opción: " << endl;
     cout << "1. Administrar equipo" << endl;
     cout << "2. Crear nuevo equipo" << endl;
     cout << "0. Salir" << endl;
     cin >> opcion2;
     while (opcion2 != 0) {
-        if (opcion2 == 1) {
-        cout << "Nombre del equipo: ";
-        cin >> equipo_buscar;
-        EquipoNuevo* equipo_nuevo = partido.buscarEquipo(equipo_buscar);
-        cout << equipo_nuevo->getNombreEquipo() << " prueba " << endl;
-        menu_administrar();
-        cin >> opcion1;
-        if (opcion1 == 1) {
-            cout << "Nombre a buscar: ";
-            cin >> nombre_buscar;
-            partido.getInformacionEquipo().imprimirInformacion(nombre_buscar);
-        } else if (opcion1 == 2) {
-            cout << partido.getInformacionEquipo().mayorEncestador();
-        } else if (opcion1 == 3) {
-            cout << "Nombre a buscar: ";
-            cin >> nombre_buscar;
-            equipo_nuevo->imprimirInformacion(nombre_buscar);
-            cout << "Selecciones lo que le gustaría cambiar: ";
-            cin >> opcion;
-            equipo_nuevo->buscarJugador(nombre_buscar)->cambioInformacion(opcion);
-        } else if (opcion1 == 4) {
-            equipo_nuevo->agregarJugadores();
-            equipo_nuevo->imprimirInformacion("Elian");
-        } else if (opcion1 == 5) {
-            cout << partido.getInformacionEquipo().masMinutosJugados();
-        } else if (opcion1 == 6) {
-            cin >> nuevo_nombre_equipo;
-            partido.getInformacionEquipo().setNombreEquipo(nuevo_nombre_equipo);
-        } else if (opcion1 == 7) {
-            cout << partido.getInformacionEquipo().puntosEquipo();
-        } else if (opcion1 == 8) {
-            cin >> nombre_buscar;
-            partido.getInformacionEquipo().eliminarJugador(nombre_buscar);
+        while (opcion2 < 0 || opcion2 > 2){
+            cout << "Número incorrecto: " << endl;
+            cout << "1. Administrar equipo" << endl;
+            cout << "2. Crear nuevo equipo" << endl;
+            cout << "0. Salir" << endl;
+            cin >> opcion2;
         }
-        } else {
+        if (opcion2 == 1) {
+            cout << "Nombre del equipo: ";
+            cin >> equipo_buscar;
+            Equipo *equipo_nuevo = partido.buscarEquipo(equipo_buscar);
+            menu_administrar();
+            cin >> opcion1;
+            if (opcion1 == 1) {
+                cout << "Nombre a buscar: ";
+                cin >> nombre_buscar;
+                partido.getInformacionEquipo().imprimirInformacion(nombre_buscar);
+            } else if (opcion1 == 2) {
+                cout << "Mayor encestador: " << partido.getInformacionEquipo().mayorEncestadorNombre() << " -> " << partido.getInformacionEquipo().mayorEncestador() << endl;                } else if (opcion1 == 3) {
+                cout << "Nombre a buscar: ";
+                cin >> nombre_buscar;
+                equipo_nuevo->imprimirInformacion(nombre_buscar);
+                cout << "Selecciones lo que le gustaría cambiar: ";
+                cin >> opcion;
+                equipo_nuevo->buscarJugador(nombre_buscar)->cambioInformacion(opcion);
+            } else if (opcion1 == 4) {
+                equipo_nuevo->agregarJugadores();
+            } else if (opcion1 == 5) {
+                cout << "Jugador con más minutos jugados: " << partido.getInformacionEquipo().masMinutosJugadosNombre() << partido.getInformacionEquipo().masMinutosJugados() << endl;
+            } else if (opcion1 == 6) {
+                cin >> nuevo_nombre_equipo;
+                equipo_nuevo->setNombreEquipo(nuevo_nombre_equipo);
+            } else if (opcion1 == 7) {
+                cout << "Los puntos anotados son: " << partido.getInformacionEquipo().puntosEquipo() << endl;
+            } else if (opcion1 == 8) {
+                cin >> nombre_buscar;
+                partido.getInformacionEquipo().eliminarJugador(nombre_buscar);
+            }
+            
+        } else if (opcion2 == 2){
             cout << "Cantidad de jugadores: ";
             cin >> tam;
             for (int i = 0; i < tam; i++) {
@@ -100,12 +99,11 @@ int main() {
             equipo.setNombreEquipo(nuevo_nombre_equipo);
             partido.agregarEquipos(equipo);
         }
-        cout << "Selecciona tu opción: " << endl;
         cout << "1. Administrar equipo" << endl;
         cout << "2. Crear nuevo equipo" << endl;
         cout << "0. Salir" << endl;
         cin >> opcion2;
     }
-    partido.crearHorario();
+
     return 0;
 }
