@@ -1,85 +1,89 @@
-#ifndef JUGADOR_NUEVO_H
-#define JUGADOR_NUEVO_H
+/*
+- Benjamín Iván Arauz Córdova
+- A00836936
+- 02/12/2022
+
+Clase Jugador: Representa a un solo jugador, recién se crea el jugador.
+*/
+
+#ifndef JUGADOR_H //Si no esta definido JUGADOR_H 
+#define JUGADOR_H //Definir procesador JUGADOR_H 
+
+//Librerias
 #include <iostream>
 #include <string>
 using namespace std;
-#include "Armador.h"
-#include "Alero.h"
-#include "Poste.h"
 
-class JugadorNuevo {
-    private:
+class Jugador {
+    protected:
+        //Atributos
         int nomina;
         int numero;
         int puntos_anotados; 
         int minutos_jugados;
         int sueldo;
-        int posicion;
         string nombre;
     public:
-        JugadorNuevo(){}     
+        //Constructor
+        Jugador(){}
+        //Getters
         string getNombre();
         int getNumero();
         int getNomina();
         int getMinutosJugados();
         int getPuntosAnotados();
         int getSueldo();
-        int getPosicion();
+        //Setters
         void setNombre(string);
         void setNumero(int);
         void setNomina(int);
         void setMinutosJugados(int);
         void setPuntosAnotados(int);
         void setSueldo(int);
-        void setPosicion(int);
         //Otros métodos
         void agregarJugador();
         void cambioInformacion(int);
 };
-
-string JugadorNuevo::getNombre(){
+//Getters
+string Jugador::getNombre(){
     return nombre;
 }
-int JugadorNuevo::getNumero(){
+int Jugador::getNumero(){
     return numero;
 }
-int JugadorNuevo::getNomina(){
+int Jugador::getNomina(){
     return nomina;
 }
-int JugadorNuevo::getMinutosJugados(){
+int Jugador::getMinutosJugados(){
     return minutos_jugados;
 }
-int JugadorNuevo::getPuntosAnotados(){
+int Jugador::getPuntosAnotados(){
     return puntos_anotados;
 }
-int JugadorNuevo::getSueldo(){
+int Jugador::getSueldo(){
     return sueldo;
 }
-int JugadorNuevo::getPosicion(){
-    return posicion;
-}
-void JugadorNuevo::setNombre(string nuevo_nombre){
+//Setters
+void Jugador::setNombre(string nuevo_nombre){
     nombre = nuevo_nombre;
 }
-void JugadorNuevo::setNumero(int nuevo_numero){
+void Jugador::setNumero(int nuevo_numero){
     numero = nuevo_numero;
 }
-void JugadorNuevo::setNomina(int nuevo_nomina){
+void Jugador::setNomina(int nuevo_nomina){
     nomina = nuevo_nomina;
 }
-void JugadorNuevo::setMinutosJugados(int nuevo_minutos_jugados){
+void Jugador::setMinutosJugados(int nuevo_minutos_jugados){
     minutos_jugados = nuevo_minutos_jugados;
 }
-void JugadorNuevo::setPuntosAnotados(int nuevo_puntos_anotados){
+void Jugador::setPuntosAnotados(int nuevo_puntos_anotados){
     puntos_anotados = nuevo_puntos_anotados;
 }
-void JugadorNuevo::setSueldo(int nuevo_sueldo){
+void Jugador::setSueldo(int nuevo_sueldo){
     sueldo = nuevo_sueldo;
 }
-void JugadorNuevo::setPosicion(int nuevo_posicion){
-    posicion = nuevo_posicion;
-}
-void JugadorNuevo::agregarJugador(){
+//Otros métodos
+void Jugador::agregarJugador(){
     string nuevo_nombre;
     int nuevo_numero;
     int nuevo_nomina;
@@ -87,6 +91,7 @@ void JugadorNuevo::agregarJugador(){
     int nuevo_puntos_anotados;
     int nuevo_sueldo;
     int opcion_minutos;
+    int opcion_posicion;
     cout << "Nombre: ";
     cin >> nuevo_nombre;
     setNombre(nuevo_nombre);
@@ -113,7 +118,7 @@ void JugadorNuevo::agregarJugador(){
         setPuntosAnotados(nuevo_puntos_anotados);
     }
 }
-void JugadorNuevo::cambioInformacion(int cambio){
+void Jugador::cambioInformacion(int cambio){
     string nuevo_nombre;
     int nuevo_numero, nuevo_nomina, nuevo_minutos_jugados, nuevo_puntos_anotados, nuevo_sueldo, opcion_minutos;
     if (cambio == 1){
